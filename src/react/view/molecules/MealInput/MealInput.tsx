@@ -1,12 +1,23 @@
-import React, {useState, useCallback, ChangeEvent} from 'react';
-import { TextField, Button, Typography } from '@material-ui/core';
-import './MealInput.scss';
+import React, {useState, useCallback} from 'react';
+import { TextField, Button, Typography, Theme } from '@material-ui/core';
+import { withStyles } from '@material-ui/styles';
+
+const styles = (theme: Theme) => ({
+  root: {
+    marginTop : theme.spacing(4)
+  },
+  labeledInput: {
+    display: 'flex',
+    alignItems: 'baseline'
+  }
+});
 
 export interface IMealInputProps {
   onSelect: (meal: string) => void;
+  classes: any;
 }
 
-const MealInput: React.FunctionComponent<IMealInputProps> = ({onSelect}) => {
+const MealInput: React.FunctionComponent<IMealInputProps> = ({onSelect, classes}) => {
 
   const [meal, setMeal] = useState('');
   const clickHandler = useCallback(() => {
@@ -19,20 +30,20 @@ const MealInput: React.FunctionComponent<IMealInputProps> = ({onSelect}) => {
 
   return (
     <>
-      <div className={'meal-input'}>
+      <div className={classes.root}>
         <Typography variant="h4">What are you eating tonight?</Typography>
-        <TextField
-          className="meal-input__input"
-          required
-          label="Required"
-          placeholder="What are you eating"
-          value={meal}
-          onChange={changeHandler}
-        />
-        <Button onClick={clickHandler}>Go Get Dem Beers</Button>
+        <div className={classes.labeledInput}>
+          <TextField
+            label="Meal"
+            placeholder="What are you eating"
+            value={meal}
+            onChange={changeHandler}
+          />
+          <Button onClick={clickHandler}>Go Get Dem Beers</Button>
+        </div>
       </div>
     </>
   );
 }
 
-export default MealInput;
+export default withStyles(styles)(MealInput);

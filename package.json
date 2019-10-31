@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "rimraf build",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npm run clean && npm run build:ui && npm run build:schema",
+    "build": "npm run clean && npm run build:schema && npm run build:ui",
     "build:schema": "typescript-json-schema ./src/api-schema/types.ts IFetchBeersResponse --required -o ./src/api-schema/FetchBeersResponse.json",
     "build:ui": "webpack",
     "start": "webpack-dev-server",

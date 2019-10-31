@@ -1,17 +1,23 @@
 import React from 'react';
-import {  Typography } from '@material-ui/core';
+import {  Typography, Theme } from '@material-ui/core';
 import './ErrorMessage.scss';
+import { withStyles } from '@material-ui/styles';
+
+const styles = {
+  root: {
+    color: '#f00'
+  }
+};
 
 export interface IErrorMessageProps {
   message: string;
+  classes: any;
 }
 
-const ErrorMessage: React.FunctionComponent<IErrorMessageProps> = ({message}) => (
-  <>
-    <div className={'error-message'}>
-      <Typography variant="body1">{message}</Typography>
-    </div>
-  </>
+const ErrorMessage: React.FunctionComponent<IErrorMessageProps> = ({message, classes}) => (
+  <div className={classes.root}>
+    <Typography variant="body1">{message}</Typography>
+  </div>
 );
 
-export default ErrorMessage;
+export default withStyles(styles)(ErrorMessage);

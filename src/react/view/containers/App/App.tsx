@@ -1,16 +1,6 @@
-import React, {useCallback} from 'react';
+import React from 'react';
 import { BeerSelector } from '~/react/view/organisms';
 
-const App = () => {
-  const selectHandler = useCallback((meal: string) => {
-    console.log(`New meal: ${meal}`);
-  }, []);
-
-  return (
-    <>
-      <BeerSelector  />
-    </>
-  );
-};
+const App = () => <BeerSelector  />;
 
 export default App;

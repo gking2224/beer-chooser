@@ -1,10 +1,20 @@
 import React, {useCallback, useState} from 'react';
 import { MealInput, ErrorMessage } from '~/react/view/molecules';
-import './BeerSelector.scss';
 import fetchBeersForMeal, { IBeerResult } from '~/react/api/beer-fetcher/fetch-beers';
 import BeerList from '../../molecules/BeerList';
+import { withStyles } from '@material-ui/styles';
 
-const BeerSelector: React.FunctionComponent = () => {
+const styles = {
+  root: {
+    width: '100%'
+  }
+};
+
+interface IBeerSelectorProps {
+  classes: any;
+};
+
+const BeerSelector: React.FunctionComponent<IBeerSelectorProps> = ({ classes }) => {
 
   const [beers, setBeers] = useState<IBeerResult[] | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -22,7 +32,7 @@ const BeerSelector: React.FunctionComponent = () => {
   }, []);
 
   return (
-    <div className={'beer-selector'}>
+    <div className={classes.root}>
       <MealInput onSelect={selectHandler} />
       {beers && <BeerList beers={beers} />}
       {error && <ErrorMessage message={error} />}
@@ -31,4 +41,4 @@ const BeerSelector: React.FunctionComponent = () => {
 };
 
 
-export default BeerSelector;
+export default withStyles(styles)(BeerSelector);
