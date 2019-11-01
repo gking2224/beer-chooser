@@ -8,6 +8,7 @@ const createValidator: (schema: any) => IValidator = (schema: any) => <T>(payloa
   const valid = validateFn(payload);
 
   if (!valid) {
+    console.error(validateFn.errors);
     throw new Error('API error: could not validate response');
   }
   return payload as T;

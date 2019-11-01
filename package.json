@@ -7,7 +7,7 @@
     "clean": "rimraf build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm run clean && npm run build:schema && npm run build:ui",
-    "build:schema": "typescript-json-schema ./src/api-schema/types.ts IFetchBeersResponse --required -o ./src/api-schema/FetchBeersResponse.json",
+    "build:schema": "typescript-json-schema ./src/api-schema/types.ts IFetchBeersResponse --strictNullChecks --required -o ./src/api-schema/FetchBeersResponse.json",
     "build:ui": "webpack",
     "start": "webpack-dev-server",
     "postinstall": "npm run build"

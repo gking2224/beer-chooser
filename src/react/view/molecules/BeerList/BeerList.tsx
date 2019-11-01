@@ -50,7 +50,9 @@ const BeerList: React.FunctionComponent<IBearListProps> = ({beers, classes}) => 
               <TableCell component="th" scope="row">
                 {beer.name}
               </TableCell>
-              <TableCell><img className={classes.image} src={beer.imageUrl} alt={beer.name}/></TableCell>
+              <TableCell>
+                {beer.imageUrl && <img className={classes.image} src={beer.imageUrl} alt={beer.name}/>}
+              </TableCell>
               <TableCell>{beer.description}</TableCell>
               <TableCell>{formatFirstBrewed(beer.firstBrewed)}</TableCell>
             </TableRow>

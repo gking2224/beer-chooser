@@ -7,12 +7,12 @@ export interface IBeerResult {
   name: string;
   description: string;
   firstBrewed: string;
-  imageUrl: string;
+  imageUrl?: string;
 }
 
 const API_BASE_URL = 'https://api.punkapi.com/v2/beers';
 
-const constructUrl = (meal: string) => `${API_BASE_URL}?food=${meal}`;
+const constructUrl = (meal: string) => encodeURI(`${API_BASE_URL}?food=${meal}`);
 
 const extractFields = (beer: IFetchBeersResponseDataPoint): IBeerResult => {
   return {
@@ -20,7 +20,7 @@ const extractFields = (beer: IFetchBeersResponseDataPoint): IBeerResult => {
     name: beer.name,
     description: beer.description,
     firstBrewed: beer.first_brewed,
-    imageUrl: beer.image_url
+    imageUrl: beer.image_url ? beer.image_url : undefined
   };
 };
 
